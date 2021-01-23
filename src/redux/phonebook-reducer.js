@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
-import types from './phonebook-types';
+import { createReducer } from '@reduxjs/toolkit';
+import { addContact, deleteContact, changeFilter } from './phonebook-action';
+// import types from './phonebook-types';
 
 const initialContacts = [
     { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -8,29 +10,39 @@ const initialContacts = [
     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
 ];
 
-const items = (state = initialContacts, { type, payload }) => {
-    switch (type) {
-        case types.ADD:
-            return [...state, payload];
-        //state.concat(payload)
+const items = createReducer(initialContacts, {
+    [addContact]: (state, { payload }) => [...state, payload],
+    [deleteContact]: (state, { payload }) =>
+        state.filter(({ id }) => id !== payload),
+});
 
-        case types.DELETE:
-            return state.filter(({ id }) => id !== payload);
+// const items = (state = initialContacts, { type, payload }) => {
+//     switch (type) {
+//         case types.ADD:
+//             return [...state, payload];
+//         //state.concat(payload)
 
-        default:
-            return state;
-    }
-};
+//         case types.DELETE:
+//             return state.filter(({ id }) => id !== payload);
 
-const filter = (state = '', { type, payload }) => {
-    switch (type) {
-        case types.CHANGE_FILTER:
-            return payload;
+//         default:
+//             return state;
+//     }
+// };
 
-        default:
-            return state;
-    }
-};
+const filter = createReducer('', {
+    [changeFilter]: (_, action) => action.payload,
+});
+
+// const filter = (state = '', { type, payload }) => {
+//     switch (type) {
+//         case types.CHANGE_FILTER:
+//             return payload;
+
+//         default:
+//             return state;
+//     }
+// };
 
 export default combineReducers({
     items,
