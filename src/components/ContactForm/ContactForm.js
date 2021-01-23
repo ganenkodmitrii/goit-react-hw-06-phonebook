@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import { useState } from 'react';
 
-export default function ContactForm({ formSubmitHandler }) {
+function ContactForm(/*{ formSubmitHandler }*/) {
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
 
@@ -28,7 +28,7 @@ export default function ContactForm({ formSubmitHandler }) {
 
     const handleSubmit = e => {
         e.preventDefault();
-        formSubmitHandler(name, number);
+        // formSubmitHandler(name, number);
         reset();
     };
 
@@ -84,3 +84,5 @@ export default function ContactForm({ formSubmitHandler }) {
 ContactForm.propTypes = {
     formSubmitHandler: PropTypes.func.isRequired,
 };
+
+export default ContactForm;

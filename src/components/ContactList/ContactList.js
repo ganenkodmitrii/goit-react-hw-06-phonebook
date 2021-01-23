@@ -3,8 +3,8 @@ import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography';
-
-export default function ContactList({ contacts, onDeleteContact }) {
+// onDeleteContact
+function ContactList({ contacts }) {
     return (
         <List>
             {contacts.map(({ id, name, number }) => (
@@ -26,9 +26,9 @@ export default function ContactList({ contacts, onDeleteContact }) {
                         type="button"
                         variant="contained"
                         color="primary"
-                        onClick={() => {
-                            onDeleteContact(id);
-                        }}
+                        // onClick={() => {
+                        //     onDeleteContact(id);
+                        // }}
                     >
                         Delete
                     </Button>
@@ -38,7 +38,7 @@ export default function ContactList({ contacts, onDeleteContact }) {
     );
 }
 ContactList.propTypes = {
-    onDeleteContact: PropTypes.func.isRequired,
+    // onDeleteContact: PropTypes.func.isRequired,
     contacts: PropTypes.arrayOf(
         PropTypes.shape({
             name: PropTypes.string.isRequired,
@@ -47,3 +47,4 @@ ContactList.propTypes = {
         }),
     ),
 };
+export default ContactList;

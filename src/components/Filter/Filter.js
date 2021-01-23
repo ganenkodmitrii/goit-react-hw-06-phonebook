@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 
-export default function Filter({ filter, onChange }) {
+function Filter({ filter, onChange }) {
     return (
         <label>
             <Typography variant="h6" gutterBottom>
@@ -23,3 +23,4 @@ Filter.propTypes = {
     filter: PropTypes.string,
     onChange: PropTypes.func.isRequired,
 };
+export default Filter;
